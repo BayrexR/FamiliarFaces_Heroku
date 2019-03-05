@@ -23,16 +23,19 @@ logging.getLogger('sqlalchemy.engine').setLevel(logging.DEBUG)
 #    Database Connection
 #=======================
 #Heroku db environment variables
-# usr = os.environ['username'] 
-# pwd = os.environ['password']
+usr = os.environ['username'] 
+pwd = os.environ['password']
+dbName = os.environ['dbName']
+dbHost = os.environ['c.dbHost']
+dbPort = os.environ['c.dbPort']
 
-usr = c.username 
-pwd = c.password
-dbName = c.dbName
-dbHost = c.dbHost
-dbPort = c.dbPort
+#Dev db connection vars.
+# usr = c.username 
+# pwd = c.password
+# dbName = c.dbName
+# dbHost = c.dbHost
+# dbPort = c.dbPort
 
-# conn_string = f"{c.username}:{c.password}@etdq12exrvdjisg6.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/qlmvsrhei7a78mbk"
 conn_string = f"{usr}:{pwd}@{dbHost}:{dbPort}/{dbName}"
 engine = create_engine(f'mysql://{conn_string}')
 
