@@ -26,8 +26,8 @@ logging.getLogger('sqlalchemy.engine').setLevel(logging.DEBUG)
 usr = os.environ['username'] 
 pwd = os.environ['password']
 dbName = os.environ['dbName']
-dbHost = os.environ['c.dbHost']
-dbPort = os.environ['c.dbPort']
+dbHost = os.environ['dbHost']
+dbPort = os.environ['dbPort']
 
 #Dev db connection vars.
 # usr = c.username 
