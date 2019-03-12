@@ -45,12 +45,6 @@ Base = automap_base()
 # reflect tables into Base
 Base.prepare(engine, reflect=True)
 
-# Assign table refference to a vars
-# StatesIndex = Base.classes.states_i_vw
-# PropertyIndex = Base.classes.props_i_vw
-# StatesView = Base.classes.states_vw
-# Survey = Base.classes.class_survey
-
 # Create Session obj
 session = Session(engine)
 
@@ -63,45 +57,6 @@ app = Flask(__name__)
 #       Helper functions
 #========================
 
-#==========
-#Get current survey results
-#==========
-# def surveyResults():
-#     #Run query
-#     with engine.connect() as con:
-#         yes = con.execute("SELECT YES FROM class_survey").fetchall()
-#         no = con.execute("SELECT NO FROM class_survey").fetchall()
-#         idk = con.execute("SELECT IDK FROM class_survey").fetchall()
-        
-#         #Declare vars
-#         yList = []
-#         nList = []
-#         iList = []
-
-#         #Itterate throught list of tuples and push vote values into a list
-#         for i in yes:
-#             yList.append(int(i[0]))
-
-#         for i in no:
-#             nList.append(int(i[0]))
-
-#         for k in idk:
-#             iList.append(int(k[0]))
-        
-#         #Sum the lists and place into variables
-#         yesTot = int(sum(yList))
-#         noTot = int(sum(nList))
-#         idkTot = int(sum(iList))
-
-#         #Create plot arrays
-#         yAxis = [yesTot, noTot, idkTot]
-#         xAxis = ["Yes", "No", "I Don't Know"]
-
-#         #Bundle both trace lists into a single list for the return value
-#         results = []
-#         results.extend((yAxis, xAxis))
-
-#     return (results)
 
 
 #========================
@@ -114,16 +69,19 @@ app = Flask(__name__)
 #======================
 @app.route("/")
 def welcome():
-    # with engine.connect() as con:
-    #     rsState = con.execute('SELECT state_id, state, geojson, population / 1000000 as population, influence_index, influence_index_er, swing_state, voting_pop_elig, voter_turnout, electoral FROM states_i_vw')
-    #     rsProp = con.execute('SELECT prop_return, prop_display FROM props_i_vw')    
-    #     rsSwingState = con.execute("SELECT case when swing_state = 1 then 'High' when swing_state = .5 then 'Moderate' when swing_state = 0 then 'Never' end as label, count(1) as value from   states_i_vw group by swing_state")
-    #     rsSwingElectoral = con.execute("SELECT case when swing_state = 1 then 'High' when swing_state = .5 then 'Moderate' when swing_state = 0 then 'Never' end as label, sum(electoral) as value from   states_i_vw group by swing_state")
-    #     rsSwingTurnout = con.execute("SELECT case when swing_state = 1 then 'High' when swing_state = .5 then 'Moderate' when swing_state = 0 then 'Never' end as label, avg(voter_turnout) as value from   states_i_vw group by swing_state")
-    #     rsSwingPopulation = con.execute("SELECT case when swing_state = 1 then 'High' when swing_state = .5 then 'Moderate' when swing_state = 0 then 'Never' end as label, sum(population) as value from   states_i_vw group by swing_state")
-
     return (
        render_template("index.html")
+        
+    )
+
+#======================
+#Route to About the Team page
+#======================
+@app.route("/about")
+def about():
+
+    return (
+       render_template("about.html")
         
     )
 
@@ -138,30 +96,58 @@ def documentation():
     )
 
 #======================
-#Route to Class Survey Page
+#Route to Test Cases Page
 #======================
-@app.route("/survey")
-def survey():
+@app.route("/test_cases/")
+def test_cases():
+    with engine.connect() as con:    
+        rsAfraid    = con.execute("Select model_name, prctCorrect from emo_grouped_results_vw where file_emotion = 'afraid'")
+        rsAngry     = con.execute("Select model_name, prctCorrect from emo_grouped_results_vw where file_emotion = 'angry'")
+        rsDisgusted = con.execute("Select model_name, prctCorrect from emo_grouped_results_vw where file_emotion = 'disgusted'")
+        rsHappy     = con.execute("Select model_name, prctCorrect from emo_grouped_results_vw where file_emotion = 'happy'")
+        rsNeutral   = con.execute("Select model_name, prctCorrect from emo_grouped_results_vw where file_emotion = 'neutral'")
+        rsSad       = con.execute("Select model_name, prctCorrect from emo_grouped_results_vw where file_emotion = 'sad'")
+        rsSurprised  = con.execute("Select model_name, prctCorrect from emo_grouped_results_vw where file_emotion = 'surprised'")
+        rsMale      = con.execute("Select model_name, prctCorrect from gen_grouped_results_vw where file_gender = 'male'")
+        rsFemale    = con.execute("Select model_name, prctCorrect from gen_grouped_results_vw where file_gender = 'female'")
 
+        a_m = text("""SELECT model_name, prctCorrect FROM emo_grouped_results_vw WHERE model_name LIKE 'AM%'""")
+        rsModelAM = con.execute(a_m)
+
+        a_s = text("""SELECT model_name, prctCorrect FROM emo_grouped_results_vw WHERE model_name LIKE 'AS%'""")
+        rsModelAS = con.execute(a_s)
+        
+        f_m = text("""SELECT model_name, prctCorrect FROM emo_grouped_results_vw WHERE model_name LIKE 'FM%'""")
+        rsModelFM = con.execute(f_m)
+        
+        f_s = text("""SELECT model_name, prctCorrect FROM emo_grouped_results_vw WHERE model_name LIKE 'FS%'""")
+        rsModelFS = con.execute(f_s)
+        
+        m_m = text("""SELECT model_name, prctCorrect FROM emo_grouped_results_vw WHERE model_name LIKE 'MM%'""")
+        rsModelMM = con.execute(m_m)
+        
+        m_s = text("""SELECT model_name, prctCorrect FROM emo_grouped_results_vw WHERE model_name LIKE 'MS%'""")
+        rsModelMS = con.execute(m_s)
+        
     return (
-        render_template("survey.html")
+        render_template("test_cases.html", rsAfraid=rsAfraid, rsAngry=rsAngry, rsDisgusted=rsDisgusted, rsHappy=rsHappy, rsNeutral=rsNeutral, rsSad=rsSad, rsSurprised=rsSurprised, rsMale=rsMale, rsFemale=rsFemale, rsModelAM=rsModelAM, rsModelAS= rsModelAS, rsModelFM= rsModelFM, rsModelFS= rsModelFS, rsModelMM= rsModelMM, rsModelMS=rsModelMS)
         
     )
 
 #======================
 #GET Route to pull results of survey from db for plot
 #======================
-@app.route("/apiV1.0/get_results")
-def getResults():
-    # results = surveyResults()
+# @app.route("/apiV1.0/get_results")
+# def getResults():
+#     # results = surveyResults()
     
-    # #Split results into two separate trace lists
-    # xAxis = results[1]
-    # yAxis = results[0]
+#     # #Split results into two separate trace lists
+#     # xAxis = results[1]
+#     # yAxis = results[0]
 
-    return (
-        render_template("survey.html")
-    )
+#     return (
+#         render_template("survey.html")
+#     )
 
 #======================
 #POST Route publish survey selection to db
@@ -192,36 +178,17 @@ def getResults():
 #     )
 
 #==============
-#Admin page route
+#Project Outcomes page route
 #==============
-@app.route("/apiV1.0/@dmin")
+@app.route("/project_outcomes")
 def admin():
-    "DB reset"
-    return (
-        render_template("admin.html")
-    )
+    with engine.connect() as con:
+        rsOutcome = con.execute('SELECT model_name, pct_correct FROM outcome_vw')
 
-#==============
-#Reset survey table route
-#==============
-# @app.route("/apiV1.0/reset")
-# def reset():
-#     with engine.connect() as con:
-#         con.execute("DROP TABLE IF EXISTS class_survey;")
-#         con.execute("CREATE TABLE class_survey (vote_id INT AUTO_INCREMENT,YES INT(1) DEFAULT 0, NO INT(1) DEFAULT 0, IDK INT(1) DEFAULT 0,	PRIMARY KEY (vote_id));")
+    return(render_template("project_outcomes.html", rsOutcome = rsOutcome))
 
-#     return (
-#         redirect("https://voter-influence.herokuapp.com/apiV1.0/@dmin", code=302)
-#     )
 
-#==============
-#Refresh survey results route
-#==============
-# @app.route("/apiV1.0/refresh")
-# def refresh():
-#     return (
-#         redirect("https://voter-influence.herokuapp.com/apiV1.0/get_results", code=302)        
-#     )
+
 
 
 if __name__ == '__main__':
