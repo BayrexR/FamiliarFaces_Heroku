@@ -10,7 +10,7 @@ sys.path.append("static/assets/Resources/")
 import config as c
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
-from sqlalchemy import create_engine, func, MetaData
+from sqlalchemy import create_engine, func, MetaData, text
 from sqlalchemy.pool import StaticPool
 from flask import Flask, jsonify, render_template, request, redirect
 
@@ -98,7 +98,7 @@ def documentation():
 #======================
 #Route to Test Cases Page
 #======================
-@app.route("/test_cases/")
+@app.route("/test_cases")
 def test_cases():
     with engine.connect() as con:    
         rsAfraid    = con.execute("Select model_name, prctCorrect from emo_grouped_results_vw where file_emotion = 'afraid'")
@@ -128,7 +128,7 @@ def test_cases():
         
         m_s = text("""SELECT model_name, prctCorrect FROM emo_grouped_results_vw WHERE model_name LIKE 'MS%'""")
         rsModelMS = con.execute(m_s)
-        
+
     return (
         render_template("test_cases.html", rsAfraid=rsAfraid, rsAngry=rsAngry, rsDisgusted=rsDisgusted, rsHappy=rsHappy, rsNeutral=rsNeutral, rsSad=rsSad, rsSurprised=rsSurprised, rsMale=rsMale, rsFemale=rsFemale, rsModelAM=rsModelAM, rsModelAS= rsModelAS, rsModelFM= rsModelFM, rsModelFS= rsModelFS, rsModelMM= rsModelMM, rsModelMS=rsModelMS)
         

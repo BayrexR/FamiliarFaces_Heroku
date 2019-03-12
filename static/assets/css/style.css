@@ -3,6 +3,10 @@ div{
     padding-right: 0px; 
 }
 
+#page-names{
+  font-weight: bold;
+}
+
 .container{
     margin: 0px;
     width:100%;
