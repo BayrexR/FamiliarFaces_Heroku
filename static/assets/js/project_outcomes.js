@@ -17,7 +17,7 @@ function getEmotionGroups(name, pct){
 
     for (i = 0; i < name.length; i++){
         var size = name[i].substring(2);
-        console.log(size);
+        // console.log(size);
         switch (size) {
             case '2': emotion2.push(name[i]);
                 emotionPct2.push(pct[i]);
@@ -35,7 +35,7 @@ function getEmotionGroups(name, pct){
                 emotionPct70.push(pct[i]);
         };
     };
-    console.log(emotion2, emotion5, emotion10, emotion35, emotion70);
+    // console.log(emotion2, emotion5, emotion10, emotion35, emotion70);
     return[emotion2, emotionPct2, emotion5, emotionPct5, emotion10, emotionPct10, emotion35, emotionPct35, emotion70, emotionPct70];
 };
 
@@ -49,16 +49,18 @@ function getGenderGroups(name, pct){
     var gender10 = [];
     var gender35 = [];
     var gender70 = [];
+    var genderCeleb = [];
 
     var genderPct2 = [];
     var genderPct5 = [];
     var genderPct10 = [];
     var genderPct35 = [];
     var genderPct70 = [];
+    var genderPctCeleb = [];
 
     for (i = 0; i < name.length; i++){
         var size = name[i].substring(1);
-        console.log(size);
+        // console.log(size);
         switch (size) {
             case '2': gender2.push(name[i]);
                 genderPct2.push(pct[i]);
@@ -72,22 +74,25 @@ function getGenderGroups(name, pct){
             case '35' : gender35.push(name[i]);
                 genderPct35.push(pct[i]);
             break;
-            default : gender70.push(name[i]);
-                genderPct70.push(pct[i]);
+            case '70' : gender70.push(name[i]);
+            genderPct70.push(pct[i]);
+            break;
+            default : genderCeleb.push(name[i]);
+                genderPctCeleb.push(pct[i]);
         };
     };
-    console.log(gender2, gender5, gender10, gender35, gender70);
-    return[gender2, genderPct2, gender5, genderPct5, gender10, genderPct10, gender35, genderPct35, gender70, genderPct70];
+    console.log(gender2, gender5, gender10, gender35, gender70, genderCeleb);
+    return[gender2, genderPct2, gender5, genderPct5, gender10, genderPct10, gender35, genderPct35, gender70, genderPct70, genderCeleb, genderPctCeleb];
 
 };
 
 function createEmotionPlot(emotionModelName, emotionPctCorrect) {
-  console.log(emotionModelName, emotionPctCorrect);
+//   console.log(emotionModelName, emotionPctCorrect);
   // Trace1 for the Outcome (fixed axis)
     
     var traceNames = getEmotionGroups(emotionModelName, emotionPctCorrect);
 
-    console.log("trace:" + traceNames);
+    // console.log("trace:" + traceNames);
 
   var EM2 = {
       x: traceNames[0],
@@ -128,7 +133,6 @@ var data = [EM2, EM5, EM10, EM35, EM70];
 
     // Create custom layout
     var layout = {
-      title: "Emotion Model Outcomes",
       yaxis: {title: '% Correct'},
       xaxis: {title: 'Model'},
       showlegend:true,
@@ -146,12 +150,12 @@ var data = [EM2, EM5, EM10, EM35, EM70];
 
 //Plots gender chart
 function createGenderPlot(genderModelName, genderPctCorrect) {
-    console.log(genderModelName, genderPctCorrect);
+    // console.log(genderModelName, genderPctCorrect);
     // Trace1 for the Outcome (fixed axis)
       
       var traceNames = getGenderGroups(genderModelName, genderPctCorrect);
   
-      console.log("trace:" + traceNames);
+    //   console.log("trace:" + traceNames);
   
       var G2 = {
           x: traceNames[0],
@@ -188,12 +192,17 @@ function createGenderPlot(genderModelName, genderPctCorrect) {
         type: "bar"
     };
     
-  
-  var data = [G2, G5, G10, G35, G70];
+    var GC = {
+        x: traceNames[10],
+        y: traceNames[11],
+        name: "Celebrity - Sample Count 10",
+        type: "bar"
+    };
+
+  var data = [G2, G5, G10, G35, G70, GC];
   
       // Create custom layout
       var layout = {
-        title: "Gender Model Outcomes",
         yaxis: {title: '% Correct'},
         xaxis: {title: 'Model'},
         showlegend:true,
