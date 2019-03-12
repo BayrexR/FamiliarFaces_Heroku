@@ -85,104 +85,177 @@
         </div> <!--End Navbar row-->
 <!----------------------------------------------BEGIN PAGE CONTENT------------------------------------------------------->
 <div class="row"> <!--Begin Main Row-->
-  <div class="col-sm-12">
-    <div id="mothodology">
-      <h1>About the Team</h1>
-    </div>
-    <div class="row">
-
-      <div class="col-xsm-12 col-med-3 col-lg">                    
-        <div id="team-member">
-          <h3>Name 1</h3>
-          <div>
-            <figure>
-              <a href="">
-                <img src="" alt="Name"/>
-              </a>
-            </figure>
-            <section class="data-card">
-              <span class="bio"></span></br>
-              <span class="linkedin"></span></br>
-              <span class="github"></span></br>
-            </section>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xsm-12 col-med-3 col-lg">
-          <div id="team-member">
-            <h3>Name 2</h3>
-            <div>
-                <figure>
-                  <a href="">
-                    <img src="" alt="Name"/>
-                  </a>
-                </figure>
-                <section class="data-card">
-                  <span class="bio"></span></br>
-                  <span class="linkedin"></span></br>
-                  <span class="github"></span></br>
-                </section>
-            </div>
-          </div>
-      </div>
-
-      <div class="col-xsm-12 col-med-3 col-lg">
-          <div id="team-member">
-            <h3>Name 3</h3>
-            <div>
-                <figure>
-                  <a href="">
-                    <img src="" alt="Name"/>
-                  </a>
-                </figure>
-                <section class="data-card">
-                  <span class="bio"></span></br>
-                  <span class="linkedin"></span></br>
-                  <span class="github"></span></br>
-                </section>
-            </div>
-          </div>
-      </div>
-
-      <div class="col-xsm-12 col-med-3 col-lg">
-          <div id="team-member">
-            <h3>Name 4</h3>
-            <div>
-                <figure>
-                  <a href="">
-                    <img src="" alt="Name"/>
-                  </a>
-                </figure>
-                <section class="data-card">
-                  <span class="bio"></span></br>
-                  <span class="linkedin"></span></br>
-                  <span class="github"></span></br>
-                </section>
-            </div>
-          </div>
-      </div>
-
-      <div class="col-xsm-12 col-med-3 col-lg">
-          <div id="team-member">
-            <h3>Name 5</h3>
-            <div>
-                <figure>
-                  <a href="">
-                    <img src="" alt="Name"/>
-                  </a>
-                </figure>
-                <section class="data-card">
-                  <span class="bio"></span></br>
-                  <span class="linkedin"></span></br>
-                  <span class="github"></span></br>
-                </section>
-            </div>
-          </div>
-      </div>
-      
+  <div class="row">
+    <div class="col-12">
+      <h1 id="Page-title">The Team</h1>
     </div>
   </div>
+  <div class="row">
+
+    <div class="col-1"></div>
+    <div class="col-12 col-sm-4 col-lg-2">
+        <div id="team-member">                        
+          <div>
+              <figure class="profile">
+                <a href="https://www.linkedin.com/in/tim/">
+                  <img src="{{url_for('static', filename='assets/img/tim')}}" class="scaled" alt="Tim Besaw"/>
+                </a>
+                <figcaption>
+                  <h3 class="name">Tim Besaw</h3>
+                  <section class="data-card">
+                      <span class="email">
+                          <a href="mailto:">
+                            <img src="{{url_for('static', filename='assets/img/email-icon.png')}}" class="email-icon" alt="Email Icon" title="Send me and email"/>
+                          </a>
+                      </span>
+                      <span class="linkedin icons">                                      
+                        <a href="https://www.linkedin.com/in/tim/">
+                          <img src="{{url_for('static', filename='assets/img/linkedin_logo.png')}}" class="linked-logo" alt="LinkedIn Logo" title="Connect on LinkedIn"/>
+                        </a>
+                      </span>
+                      <span class="github icons">                                      
+                        <a href="https://github.com/tim">
+                          <img src="{{url_for('static', filename='assets/img/github_logo.png')}}"  class="git-logo" alt="GitHub Logo" title="Connect on GitHub"/>
+                        </a>
+                      </span>
+                    </section>
+                </figcaption>
+              </figure>                            
+          </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-4 col-lg-2">
+        <div id="team-member">                        
+          <div>
+              <figure class="profile">
+                <a href="https://linkedin.com/in/bayrex-rodriguez">
+                  <img src="{{url_for('static', filename='assets/img/bay.jpg')}}" class="scaled" alt="Bayrex Rodriguez"/>
+                </a>
+                <figcaption>
+                  <h3 class="name">Bayrex Rodriguez</h3>
+                  <section class="data-card">
+                      <span class="email">
+                        <a href="mailto:brodriguez@synctecllc.com">
+                          <img src="{{url_for('static', filename='assets/img/email-icon.png')}}" class="email-icon" alt="Email Icon" title="Send me and email"/>
+                        </a>
+                      </span>
+                      <span class="linkedin icons">                                      
+                        <a href="https://linkedin.com/in/bayrex-rodriguez">
+                          <img src="{{url_for('static', filename='assets/img/linkedin_logo.png')}}" class="linked-logo" alt="LinkedIn Logo" title="Connect on LinkedIn"/>
+                        </a>
+                      </span>
+                      <span class="github icons">                                      
+                        <a href="https://github.com/BayrexR">
+                          <img src="{{url_for('static', filename='assets/img/github_logo.png')}}"  class="git-logo" alt="GitHub Logo" title="Connect on GitHub"/>
+                        </a>
+                      </span>
+                    </section>
+                </figcaption>
+              </figure>                            
+          </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-4 col-lg-2">
+        <div id="team-member">                        
+          <div>
+              <figure class="profile">
+                <a href="">
+                  <img src="{{url_for('static', filename='assets/img/chris.jpg')}}" class="scaled" alt="Chris Tran"/>
+                </a>
+                <figcaption>
+                  <h3 class="name">Chris Tran</h3>
+                  <section class="data-card">
+                      <span class="email">
+                          <a href="mailto:">
+                            <img src="{{url_for('static', filename='assets/img/email-icon.png')}}" class="email-icon" alt="Email Icon" title="Send me and email"/>
+                          </a>
+                      </span>
+                      <span class="linkedin icons">                                      
+                        <a href="https://www.linkedin.com/in/c_tran301/">
+                          <img src="{{url_for('static', filename='assets/img/linkedin_logo.png')}}" class="linked-logo" alt="LinkedIn Logo" title="Connect on LinkedIn"/>
+                        </a>
+                      </span>
+                      <span class="github icons">                                      
+                        <a href="https://www.github.com/c_tran301/">
+                          <img src="{{url_for('static', filename='assets/img/github_logo.png')}}"  class="git-logo" alt="GitHub Logo" title="Connect on GitHub"/>
+                        </a>
+                      </span>
+                    </section>
+                </figcaption>
+              </figure>                            
+          </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-4 col-lg-2">
+        <div id="team-member">                        
+          <div>
+              <figure class="profile">
+                <a href="https://www.linkedin.com/in/emil-rodulfo/">
+                  <img src="{{url_for('static', filename='assets/img/emil')}}" class="scaled" alt="Emil Rodulfo"/>
+                </a>
+                <figcaption>
+                  <h3 class="name">Emil Rodulfo</h3>
+                  <section class="data-card">
+                      <span class="email">
+                          <a href="mailto:">
+                            <img src="{{url_for('static', filename='assets/img/email-icon.png')}}" class="email-icon" alt="Email Icon" title="Send me and email"/>
+                          </a>
+                      </span>
+                      <span class="linkedin icons">                                      
+                        <a href="https://www.linkedin.com/in/emil-rodulfo/">
+                          <img src="{{url_for('static', filename='assets/img/linkedin_logo.png')}}" class="linked-logo" alt="LinkedIn Logo" title="Connect on LinkedIn"/>
+                        </a>
+                      </span>
+                      <span class="github icons">                                      
+                        <a href="https://github.com/emilrodulfo">
+                          <img src="{{url_for('static', filename='assets/img/github_logo.png')}}"  class="git-logo" alt="GitHub Logo" title="Connect on GitHub"/>
+                        </a>
+                      </span>
+                    </section>
+                </figcaption>
+              </figure>                            
+          </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-4 col-lg-2">
+        <div id="team-member">                        
+          <div>
+              <figure class="profile">
+                <a href="https://www.linkedin.com/in/martina-abomosa-1259b5167/">
+                  <img src="{{url_for('static', filename='assets/img/martina2.jpg')}}" class="scaled" alt="Martina Abomosa"/>
+                </a>
+                <figcaption>
+                  <h3 class="name">Martina Abomosa</h3>
+                  <section class="data-card">
+                      <span class="email">
+                          <a href="mailto:">
+                            <img src="{{url_for('static', filename='assets/img/email-icon.png')}}" class="email-icon" alt="Email Icon" title="Send me and email"/>
+                          </a>
+                      </span>
+                      <span class="linkedin icons">                                      
+                        <a href="https://www.linkedin.com/in/martina-abomosa-1259b5167/">
+                          <img src="{{url_for('static', filename='assets/img/linkedin_logo.png')}}" class="linked-logo" alt="LinkedIn Logo" title="Connect on LinkedIn"/>
+                        </a>
+                      </span>
+                      <span class="github icons">                                      
+                        <a href="https://github.com/martinamagdy">
+                          <img src="{{url_for('static', filename='assets/img/github_logo.png')}}"  class="git-logo" alt="GitHub Logo" title="Connect on GitHub"/>
+                        </a>
+                      </span>
+                    </section>
+                </figcaption>
+              </figure>                            
+          </div>
+        </div>
+    </div>
+    <div class="col-1"></div>
+    
+  </div>
+  
 </div><!--Begin Main Row-->
 <h1></h1>
 
